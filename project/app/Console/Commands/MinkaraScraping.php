@@ -61,24 +61,8 @@ class MinkaraScraping extends Command
                     $has_not_now_item = true;
                 }
             });
-            if ($has_not_now_item == 0) break;
+            if ($has_not_now_item) break;
             $page++;
-            // $crawler->filter('.pr_search_result_box .item-common')->each(function ($node) {
-            //     // 今日日付の内容のみ抽出する。
-            //     $date = \DateTime::createFromFormat('Y年m月d日', $node->filter('.date')->text());
-            //     $dt = new Carbon($date);
-            //     if ($dt->isToday()) {
-            //         $tire = new Tire();
-            //         $tire->title = $node->filter('.title')->text();
-            //         $tire->maker = $node->filter('.maker td')->text();
-            //         $brand = $node->filter('.brand td');
-            //         $tire->brand = count($brand) >= 1 ? $brand->text() : 'その他';
-            //         $tire->series = $node->filter('.series td')->text();
-            //         $tire->type = $node->filter('.tiretype td')->text();
-            //         $tire->posted_at = $date;
-            //         $tire->save();
-            //     }
-            // });
         }
         return 0;
     }
