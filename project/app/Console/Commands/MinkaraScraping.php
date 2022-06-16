@@ -44,11 +44,10 @@ class MinkaraScraping extends Command
             $url = sprintf("https://minkara.carview.co.jp/partsreview/?bi=1&ci=2&pn=%d", $page);
             $crawler = \Goutte::request('GET', $url);
             $has_not_now_item = false;
-            $crawler->filter('.pr_search_result_box .item-common')->each(function ($node) use (&$now_count) {
+            $crawler->filter('.pr_search_result_box .item-common')->each(function ($node) use (&$has_not_now_item) {
                 $date = \DateTime::createFromFormat('Y年m月d日', $node->filter('.date')->text());
                 $dt = new Carbon($date);
                 if ($dt->isToday()) {
-                    $now_count++;
                     $tire = new Tire();
                     $tire->title = $node->filter('.title')->text();
                     $tire->maker = $node->filter('.maker td')->text();
