@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use App\Models\Tire;
 use Carbon\Carbon;
 
-class MinkaraScraping extends Command
+class TireScraping extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:minkara-scraping';
+    protected $signature = 'command:tire-scraping';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'みんからから今日日付のタイヤ情報のスクレイピングを行います。';
+    protected $description = '指定サイトから今日日付のタイヤ情報のスク入れピングを行います。';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class MinkaraScraping extends Command
     {
         $page = 1;
         while (True) {
-            $url = sprintf("https://minkara.carview.co.jp/partsreview/?bi=1&ci=2&pn=%d", $page);
+            $url = sprintf(config('scraping.tire_url'), $page);
             $crawler = \Goutte::request('GET', $url);
             $has_not_now_item = false;
             $crawler->filter('.pr_search_result_box .item-common')->each(function ($node) use (&$has_not_now_item) {
