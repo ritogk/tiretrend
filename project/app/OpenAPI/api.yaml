@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: OpenAPI Tutorial
+  description: OpenAPI Tutorial by halhorn
+  version: 0.0.0
+servers:
+  - url: http://localhost:80/api/v1
+    description: 開発用
+paths:
+  /tires:
+    get:
+      security:
+        - bearerAdmin: []
+      tags:
+        - "tires"
+      summary: タイヤの一覧を取得します。
+      description: 詳細内容
+      parameters:
+        - in: query
+          name: periodStart
+          schema:
+            type: string
+            format: date
+          description: 期間(開始)
+          required: false
+        - in: query
+          name: periodEnd
+          schema:
+            type: string
+            format: date
+          description: 期間(終了)
+          required: false
+        - in: query
+          name: maker
+          schema:
+            type: string
+          description: メーカー
+          required: false
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: タイプ
+          required: false
+      responses:
+        "200":
+          description: タイヤ一覧
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/tire"
+
+components:
+  schemas:
+    tire:
+      description: タイヤ
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id
+        title:
+          type: string
+          description: タイトル
+        maker:
+          type: string
+          description: メーカー
+        brand:
+          type: string
+          description: ブランド
+        series:
+          type: string
+          description: シリーズ
+        type:
+          type: string
+          description: タイプ
+        postedAt:
+          type: string
+          format: date
+          description: 投稿日時
+      required:
+        - id
+        - title
+        - maker
+        - brand
+        - series
+        - type
+        - postedAt
+    GetTireQuery:
+      description: GET /trie クエリ
+      type: object
+      properties:
+        periodStart:
+          type: string
+          format: date
+          description: 期間(開始)
+        periodEnd:
+          type: string
+          format: date
+          description: 期間(終了)
+        maker:
+          type: string
+          description: メーカー
+        type:
+          type: string
+          description: タイプ

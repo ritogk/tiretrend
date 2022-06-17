@@ -34,6 +34,8 @@ use DateTimeInterface;
  * @method static \Illuminate\Database\Query\Builder|Tire withoutTrashed()
  * @property string $maker メーカー
  * @method static \Illuminate\Database\Eloquent\Builder|Tire whereMaker($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Tire whereDeletedAt($value)
  */
 class Tire extends Model
 {

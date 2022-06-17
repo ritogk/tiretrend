@@ -22,6 +22,7 @@ class CreateTiresTable extends Migration
             $table->string('type')->comment('タイプ');
             $table->date('posted_at')->comment('投稿日時');
             $table->timestamps();
+            $table->softDeletes()->index();
         });
     }
 
