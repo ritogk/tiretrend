@@ -45,20 +45,27 @@ class TireScraping extends Command
             $crawler = \Goutte::request('GET', $url);
             $has_not_now_item = false;
             $crawler->filter('.pr_search_result_box .item-common')->each(function ($node) use (&$has_not_now_item) {
-                $date = \DateTime::createFromFormat('Y年m月d日', $node->filter('.date')->text());
-                $dt = new Carbon($date);
-                if ($dt->isToday()) {
-                    $tire = new Tire();
-                    $tire->title = $node->filter('.title')->text();
-                    $tire->maker = $node->filter('.maker td')->text();
-                    $brand = $node->filter('.brand td');
-                    $tire->brand = count($brand) >= 1 ? $brand->text() : 'その他';
-                    $tire->series = $node->filter('.series td')->text();
-                    $tire->type = $node->filter('.tiretype td')->text();
-                    $tire->posted_at = $date;
-                    $tire->save();
-                } else {
-                    $has_not_now_item = true;
+                $date_node = $node->filter('.date');
+                if (count($date_node) >= 1) {
+                    $date = \DateTime::createFromFormat('Y年m月d日', $date_node->text());
+                    $dt = new Carbon($date);
+                    if ($dt->isToday()) {
+                        $tire = new Tire();
+                        $tire->title = $node->filter('.title')->text();
+                        $tire->maker = $node->filter('.maker td')->text();
+
+                        $brand_node = $node->filter('.brand td');
+                        $tire->brand = count($brand_node) >= 1 ? $brand_node->text() : 'その他';
+
+                        $series_node = $node->filter('.series td');
+                        $tire->series = count($series_node) >= 1 ? $series_node->text() : 'その他';
+
+                        $tire->type = $node->filter('.tiretype td')->text();
+                        $tire->posted_at = $date;
+                        $tire->save();
+                    } else {
+                        $has_not_now_item = true;
+                    }
                 }
             });
             if ($has_not_now_item) break;
