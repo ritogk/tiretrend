@@ -20,15 +20,13 @@ paths:
           name: periodStart
           schema:
             type: string
-            format: date
-          description: 期間(開始)
+          description: 期間(開始) YYYY/MM/DD
           required: false
         - in: query
           name: periodEnd
           schema:
             type: string
-            format: date
-          description: 期間(終了)
+          description: 期間(終了) YYYY/MM/DD
           required: false
         - in: query
           name: maker
@@ -85,12 +83,10 @@ components:
       properties:
         periodStart:
           type: string
-          format: date
-          description: 期間(開始)
+          description: 期間(開始) YYYY/MM/DD
         periodEnd:
           type: string
-          format: date
-          description: 期間(終了)
+          description: 期間(終了) YYYY/MM/DD
         maker:
           type: string
           description: メーカー

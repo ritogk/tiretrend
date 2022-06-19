@@ -120,8 +120,8 @@ class TiresApi
      *
      * タイヤの一覧を取得します。
      *
-     * @param  \DateTime $periodStart 期間(開始) (optional)
-     * @param  \DateTime $periodEnd 期間(終了) (optional)
+     * @param  string $periodStart 期間(開始) YYYY/MM/DD (optional)
+     * @param  string $periodEnd 期間(終了) YYYY/MM/DD (optional)
      * @param  string $maker メーカー (optional)
      * @param  string $type タイプ (optional)
      *
@@ -140,8 +140,8 @@ class TiresApi
      *
      * タイヤの一覧を取得します。
      *
-     * @param  \DateTime $periodStart 期間(開始) (optional)
-     * @param  \DateTime $periodEnd 期間(終了) (optional)
+     * @param  string $periodStart 期間(開始) YYYY/MM/DD (optional)
+     * @param  string $periodEnd 期間(終了) YYYY/MM/DD (optional)
      * @param  string $maker メーカー (optional)
      * @param  string $type タイプ (optional)
      *
@@ -242,8 +242,8 @@ class TiresApi
      *
      * タイヤの一覧を取得します。
      *
-     * @param  \DateTime $periodStart 期間(開始) (optional)
-     * @param  \DateTime $periodEnd 期間(終了) (optional)
+     * @param  string $periodStart 期間(開始) YYYY/MM/DD (optional)
+     * @param  string $periodEnd 期間(終了) YYYY/MM/DD (optional)
      * @param  string $maker メーカー (optional)
      * @param  string $type タイプ (optional)
      *
@@ -265,8 +265,8 @@ class TiresApi
      *
      * タイヤの一覧を取得します。
      *
-     * @param  \DateTime $periodStart 期間(開始) (optional)
-     * @param  \DateTime $periodEnd 期間(終了) (optional)
+     * @param  string $periodStart 期間(開始) YYYY/MM/DD (optional)
+     * @param  string $periodEnd 期間(終了) YYYY/MM/DD (optional)
      * @param  string $maker メーカー (optional)
      * @param  string $type タイプ (optional)
      *
@@ -317,8 +317,8 @@ class TiresApi
     /**
      * Create request for operation 'tiresGet'
      *
-     * @param  \DateTime $periodStart 期間(開始) (optional)
-     * @param  \DateTime $periodEnd 期間(終了) (optional)
+     * @param  string $periodStart 期間(開始) YYYY/MM/DD (optional)
+     * @param  string $periodEnd 期間(終了) YYYY/MM/DD (optional)
      * @param  string $maker メーカー (optional)
      * @param  string $type タイプ (optional)
      *

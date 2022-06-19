@@ -58,8 +58,8 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'periodStart' => '\DateTime',
-        'periodEnd' => '\DateTime',
+        'periodStart' => 'string',
+        'periodEnd' => 'string',
         'maker' => 'string',
         'type' => 'string'
     ];
@@ -72,8 +72,8 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'periodStart' => 'date',
-        'periodEnd' => 'date',
+        'periodStart' => null,
+        'periodEnd' => null,
         'maker' => null,
         'type' => null
     ];
@@ -225,7 +225,7 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets periodStart
      *
-     * @return \DateTime|null
+     * @return string|null
      */
     public function getPeriodStart()
     {
@@ -235,7 +235,7 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets periodStart
      *
-     * @param \DateTime|null $periodStart 期間(開始)
+     * @param string|null $periodStart 期間(開始) YYYY/MM/DD
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets periodEnd
      *
-     * @return \DateTime|null
+     * @return string|null
      */
     public function getPeriodEnd()
     {
@@ -259,7 +259,7 @@ class GetTireQuery implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets periodEnd
      *
-     * @param \DateTime|null $periodEnd 期間(終了)
+     * @param string|null $periodEnd 期間(終了) YYYY/MM/DD
      *
      * @return self
      */
