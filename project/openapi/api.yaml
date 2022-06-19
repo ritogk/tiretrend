@@ -12,7 +12,7 @@ paths:
       security:
         - bearerAdmin: []
       tags:
-        - "tires"
+        - 'tires'
       summary: タイヤの一覧を取得します。
       description: 詳細内容
       parameters:
@@ -43,14 +43,14 @@ paths:
           description: タイプ
           required: false
       responses:
-        "200":
+        '200':
           description: タイヤ一覧
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/tire"
+                  $ref: '#/components/schemas/tire'
 
 components:
   schemas:
@@ -58,36 +58,27 @@ components:
       description: タイヤ
       type: object
       properties:
-        id:
-          type: integer
-          description: id
-        title:
-          type: string
-          description: タイトル
-        maker:
-          type: string
-          description: メーカー
-        brand:
-          type: string
-          description: ブランド
         series:
           type: string
           description: シリーズ
+        brand:
+          type: string
+          description: ブランド
+        maker:
+          type: string
+          description: メーカー
         type:
           type: string
           description: タイプ
-        postedAt:
-          type: string
-          format: date
-          description: 投稿日時
+        count:
+          type: integer
+          description: カウント
       required:
-        - id
-        - title
-        - maker
-        - brand
         - series
+        - brand
+        - maker
         - type
-        - postedAt
+        - count
     GetTireQuery:
       description: GET /trie クエリ
       type: object

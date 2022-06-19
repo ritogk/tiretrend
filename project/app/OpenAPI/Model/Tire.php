@@ -58,13 +58,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'title' => 'string',
-        'maker' => 'string',
-        'brand' => 'string',
         'series' => 'string',
+        'brand' => 'string',
+        'maker' => 'string',
         'type' => 'string',
-        'postedAt' => '\DateTime'
+        'count' => 'int'
     ];
 
     /**
@@ -75,13 +73,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'title' => null,
-        'maker' => null,
-        'brand' => null,
         'series' => null,
+        'brand' => null,
+        'maker' => null,
         'type' => null,
-        'postedAt' => 'date'
+        'count' => null
     ];
 
     /**
@@ -111,13 +107,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'title' => 'title',
-        'maker' => 'maker',
-        'brand' => 'brand',
         'series' => 'series',
+        'brand' => 'brand',
+        'maker' => 'maker',
         'type' => 'type',
-        'postedAt' => 'postedAt'
+        'count' => 'count'
     ];
 
     /**
@@ -126,13 +120,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'title' => 'setTitle',
-        'maker' => 'setMaker',
-        'brand' => 'setBrand',
         'series' => 'setSeries',
+        'brand' => 'setBrand',
+        'maker' => 'setMaker',
         'type' => 'setType',
-        'postedAt' => 'setPostedAt'
+        'count' => 'setCount'
     ];
 
     /**
@@ -141,13 +133,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'title' => 'getTitle',
-        'maker' => 'getMaker',
-        'brand' => 'getBrand',
         'series' => 'getSeries',
+        'brand' => 'getBrand',
+        'maker' => 'getMaker',
         'type' => 'getType',
-        'postedAt' => 'getPostedAt'
+        'count' => 'getCount'
     ];
 
     /**
@@ -207,13 +197,11 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['title'] = $data['title'] ?? null;
-        $this->container['maker'] = $data['maker'] ?? null;
-        $this->container['brand'] = $data['brand'] ?? null;
         $this->container['series'] = $data['series'] ?? null;
+        $this->container['brand'] = $data['brand'] ?? null;
+        $this->container['maker'] = $data['maker'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
-        $this->container['postedAt'] = $data['postedAt'] ?? null;
+        $this->container['count'] = $data['count'] ?? null;
     }
 
     /**
@@ -225,26 +213,20 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ($this->container['maker'] === null) {
-            $invalidProperties[] = "'maker' can't be null";
+        if ($this->container['series'] === null) {
+            $invalidProperties[] = "'series' can't be null";
         }
         if ($this->container['brand'] === null) {
             $invalidProperties[] = "'brand' can't be null";
         }
-        if ($this->container['series'] === null) {
-            $invalidProperties[] = "'series' can't be null";
+        if ($this->container['maker'] === null) {
+            $invalidProperties[] = "'maker' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['postedAt'] === null) {
-            $invalidProperties[] = "'postedAt' can't be null";
+        if ($this->container['count'] === null) {
+            $invalidProperties[] = "'count' can't be null";
         }
         return $invalidProperties;
     }
@@ -262,73 +244,25 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
+     * Gets series
      *
      * @return string
      */
-    public function getTitle()
+    public function getSeries()
     {
-        return $this->container['title'];
+        return $this->container['series'];
     }
 
     /**
-     * Sets title
+     * Sets series
      *
-     * @param string $title タイトル
+     * @param string $series シリーズ
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setSeries($series)
     {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets maker
-     *
-     * @return string
-     */
-    public function getMaker()
-    {
-        return $this->container['maker'];
-    }
-
-    /**
-     * Sets maker
-     *
-     * @param string $maker メーカー
-     *
-     * @return self
-     */
-    public function setMaker($maker)
-    {
-        $this->container['maker'] = $maker;
+        $this->container['series'] = $series;
 
         return $this;
     }
@@ -358,25 +292,25 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets series
+     * Gets maker
      *
      * @return string
      */
-    public function getSeries()
+    public function getMaker()
     {
-        return $this->container['series'];
+        return $this->container['maker'];
     }
 
     /**
-     * Sets series
+     * Sets maker
      *
-     * @param string $series シリーズ
+     * @param string $maker メーカー
      *
      * @return self
      */
-    public function setSeries($series)
+    public function setMaker($maker)
     {
-        $this->container['series'] = $series;
+        $this->container['maker'] = $maker;
 
         return $this;
     }
@@ -406,25 +340,25 @@ class Tire implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets postedAt
+     * Gets count
      *
-     * @return \DateTime
+     * @return int
      */
-    public function getPostedAt()
+    public function getCount()
     {
-        return $this->container['postedAt'];
+        return $this->container['count'];
     }
 
     /**
-     * Sets postedAt
+     * Sets count
      *
-     * @param \DateTime $postedAt 投稿日時
+     * @param int $count カウント
      *
      * @return self
      */
-    public function setPostedAt($postedAt)
+    public function setCount($count)
     {
-        $this->container['postedAt'] = $postedAt;
+        $this->container['count'] = $count;
 
         return $this;
     }

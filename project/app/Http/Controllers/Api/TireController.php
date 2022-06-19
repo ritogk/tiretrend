@@ -30,15 +30,21 @@ class TireController extends Controller
         $maker = $parameters->getMaker();
         $type = $parameters->getType();
 
-        $items = Tire::when(isset($maker), function ($query) use ($maker) {
-            return $query->where('maker', 'like', "%$maker%");
-        })->when(isset($type), function ($query) use ($type) {
-            return $query->where('type', 'like', "%$type%");
-        })->when(isset($period_start), function ($query) use ($period_start) {
-            return $query->where("posted_at", '>=', $period_start);
-        })->when(isset($period_end), function ($query) use ($period_end) {
-            return $query->where("posted_at", '<=', $period_end);
-        })->orderBy('posted_at')->get()->toArray();
+        $items = Tire::select('series', 'brand', 'maker', 'type', \DB::raw('count(*) as count'))
+            ->when(isset($maker), function ($query) use ($maker) {
+                return $query->where('maker', 'like', "%$maker%");
+            })
+            ->when(isset($type), function ($query) use ($type) {
+                return $query->where('type', 'like', "%$type%");
+            })
+            ->when(isset($period_start), function ($query) use ($period_start) {
+                return $query->where("posted_at", '>=', $period_start);
+            })
+            ->when(isset($period_end), function ($query) use ($period_end) {
+                return $query->where("posted_at", '<=', $period_end);
+            })
+            ->groupBy(['series', 'brand', 'maker', 'type'])
+            ->orderBy('count', 'desc')->get()->toArray();
 
         # oasのレスポンスモデルに変換して返す。
         return response()->json(
