@@ -220,8 +220,6 @@ export default defineComponent({
       return
     }
 
-    console.log(process.env.MIX_APP_ENV)
-
     return { condsRef, tiresRef, filters, clickSearch }
   },
 })

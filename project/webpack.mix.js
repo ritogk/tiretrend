@@ -40,6 +40,3 @@ mix.webpackConfig({
     },
   },
 })
-
-// const dotenvExpand = require('dotenv-expand')
-// dotenvExpand(require('dotenv').config({ path: './.env' /*, debug: true*/ }))
