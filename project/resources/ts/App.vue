@@ -4,11 +4,13 @@
       <div class="me-auto">
         <div class="row">
           <div class="col">
-            <a class="navbar-brand pb-0" href="#">GVisual</a>
+            <a class="navbar-brand pb-0" href="#">Taitore</a>
           </div>
         </div>
         <div class="row">
-          <div class="col text-light" style="font-size: 8px">説明文</div>
+          <div class="col text-light" style="font-size: 8px">
+            メジャーなタイヤをいい感じに検索するやつ
+          </div>
         </div>
       </div>
       <div>

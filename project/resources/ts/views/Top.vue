@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="row mb-3">
         <label for="periodStartInput" class="form-label">期間</label>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
           <input
             id="periodStartInput"
             v-model="condsRef.periodStart"
@@ -12,8 +12,8 @@
             class="form-control"
           />
         </div>
-        <div class="col-1">~</div>
-        <div class="col-3">
+        <div class="col-lg-1 col-sm-12">から</div>
+        <div class="col-lg-3 col-sm-12">
           <input
             id="periodStartInput"
             v-model="condsRef.periodEnd"
@@ -23,23 +23,27 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
           <label for="makerInput" class="form-label">メーカー</label>
-          <input
-            id="makerInput"
+          <Multiselect
             v-model="condsRef.maker"
-            type="text"
-            class="form-control"
-          />
+            :options="makerNames"
+            placeholder=""
+            :filterReslts="true"
+            :min-chars="1"
+            :searchable="true"
+          ></Multiselect>
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
           <label for="typeInput" class="form-label">タイプ</label>
-          <input
-            id="typeInput"
+          <Multiselect
             v-model="condsRef.type"
-            type="text"
-            class="form-control"
-          />
+            :options="typeNames"
+            placeholder=""
+            :filterReslts="true"
+            :min-chars="1"
+            :searchable="true"
+          ></Multiselect>
         </div>
       </div>
       <a href="#" class="btn btn-primary" @click="clickSearch">検索</a>
@@ -138,7 +142,12 @@
         </template>
       </Column>
 
-      <Column field="count" header="カウント" sortable style="min-width: 14rem">
+      <Column
+        field="count"
+        header="レビュー数"
+        sortable
+        style="min-width: 14rem"
+      >
         <template #body="{ data }">
           {{ data.count }}
         </template>
@@ -147,7 +156,7 @@
             v-model="filterModel.value"
             type="text"
             class="p-column-filter"
-            placeholder="Search by カウント"
+            placeholder="Search by レビュー数"
           />
         </template>
       </Column>
@@ -171,11 +180,23 @@ export default defineComponent({
       type: '',
     })
 
-    // タイヤ一覧の取得
     const tireapi = new TiresApi(apiConfig)
+    // タイヤ一覧の取得
     const tiresRef: Tire[] = reactive([])
+    // メーカープルダウンのオプション
+    let makerNames: { [key: string]: string } = reactive({ '': '' })
+    // タイププルダウンのオプション
+    let typeNames: { [key: string]: string } = reactive({ '': '' })
     tireapi.tiresGet({}).then((value) => {
       tiresRef.splice(0, tiresRef.length, ...value)
+      Array.from(new Set(tiresRef.map((item) => item.maker))).forEach(
+        (item) => {
+          makerNames[item] = item
+        }
+      )
+      Array.from(new Set(tiresRef.map((item) => item.type))).forEach((item) => {
+        typeNames[item] = item
+      })
     })
 
     // データテーブル内の絞り込み設定
@@ -220,7 +241,7 @@ export default defineComponent({
       return
     }
 
-    return { condsRef, tiresRef, filters, clickSearch }
+    return { condsRef, tiresRef, makerNames, typeNames, filters, clickSearch }
   },
 })
 </script>

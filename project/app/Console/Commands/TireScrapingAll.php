@@ -64,7 +64,7 @@ class TireScrapingAll extends Command
                 $item_cnt++;
             });
             $page++;
-            if ($item_cnt >= 20000) break;
+            if ($item_cnt >= 4000) break;
         }
         return 0;
     }
