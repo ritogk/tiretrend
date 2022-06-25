@@ -176,8 +176,8 @@ export default defineComponent({
     const condsRef = reactive({
       periodStart: '',
       periodEnd: '',
-      maker: '',
-      type: '',
+      maker: '' as string | null,
+      type: '' as string | null,
     })
 
     const tireapi = new TiresApi(apiConfig)
@@ -232,8 +232,8 @@ export default defineComponent({
         .tiresGet({
           periodStart: condsRef.periodStart,
           periodEnd: condsRef.periodEnd,
-          maker: condsRef.maker,
-          type: condsRef.type,
+          maker: condsRef.maker ?? '',
+          type: condsRef.type ?? '',
         })
         .then((value) => {
           tiresRef.splice(0, tiresRef.length, ...value)
