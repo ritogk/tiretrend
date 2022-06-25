@@ -62,6 +62,10 @@ class TireScraping extends Command
 
                         $tire->type = $node->filter('.tiretype td')->text();
                         $tire->posted_at = $date;
+
+                        $url_node = $node->filter(".contents-bottom");
+                        $tire->url = count($url_node) >= 1 ? $url_node->attr("href") : 'その他';
+
                         $tire->save();
                     } else {
                         $has_not_now_item = true;

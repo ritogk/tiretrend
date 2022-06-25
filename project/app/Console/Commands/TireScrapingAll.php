@@ -60,6 +60,9 @@ class TireScrapingAll extends Command
                 $date_node = $node->filter('.date');
                 $tire->posted_at = count($date_node) >= 1 ? \DateTime::createFromFormat('Y年m月d日', $date_node->text()) : '9999/01/01';
 
+                $url_node = $node->filter(".contents-bottom");
+                $tire->url = count($url_node) >= 1 ? $url_node->attr("href") : 'その他';
+
                 $tire->save();
                 $item_cnt++;
             });
