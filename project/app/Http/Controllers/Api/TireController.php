@@ -43,6 +43,7 @@ class TireController extends Controller
             ->when(isset($period_end), function ($query) use ($period_end) {
                 return $query->where("posted_at", '<=', $period_end);
             })
+            ->where("posted_at", '!=', '9999/01/01')
             ->groupBy(['series', 'brand', 'maker', 'type'])
             ->orderBy('count', 'desc')->get()->toArray();
 
